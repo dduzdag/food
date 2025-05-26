@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bu Akşam Ne Yesek?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #2e1e0f;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay {
+      background-color: rgba(255, 248, 240, 0.92);
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #8d4b2c;
+      text-shadow: 1px 1px #fff5ee;
+      margin-bottom: 40px;
+    }
+
+    #yemek {
+      font-size: 2.2rem;
+      margin-top: 30px;
+      font-weight: 600;
+    }
+
+    button {
+      padding: 16px 36px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff7043;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+      transform: scale(1.05);
+    }
+
+    a {
+      display: block;
+      margin-top: 24px;
+      font-size: 1.1rem;
+      color: #6d4c41;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>🤔 Bu Akşam Ne Yesek?</h1>
+    <p id="yemek">Hadi birlikte karar verelim!</p>
+    <button id="secici">Bir Öneri Getir!</button>
+    <a id="tarifLinki" href="#" target="_blank"></a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const yemekler = [
+        { ad: "Mantı", youtube: "https://www.youtube.com/watch?v=YyU7Z_YDJME" },
+        { ad: "İskender Kebap", youtube: "https://www.youtube.com/watch?v=gaKTiR0ph4Q" },
+        { ad: "Karnıyarık", youtube: "https://www.youtube.com/watch?v=OEQe9i7M5aA" },
+        { ad: "Etli Nohut", youtube: "https://www.youtube.com/watch?v=6EPdZd7EMjA" },
+        { ad: "Tavuk Sote", youtube: "https://www.youtube.com/watch?v=GLYmRDh7PxA" },
+        { ad: "Mercimek Çorbası", youtube: "https://www.youtube.com/watch?v=xuWjMgeS8TU" },
+        { ad: "Menemen", youtube: "https://www.youtube.com/watch?v=Y-Sls8e9wOU" },
+        { ad: "Zeytinyağlı Fasulye", youtube: "https://www.youtube.com/watch?v=7gynHzBa2gQ" },
+        { ad: "Kuru Fasulye", youtube: "https://www.youtube.com/watch?v=xiH4D7LrChg" },
+        { ad: "Patates Yemeği", youtube: "https://www.youtube.com/watch?v=tKVhx51fXgI" },
+        { ad: "Sebzeli Bulgur Pilavı", youtube: "https://www.youtube.com/watch?v=EThqzQ_6cfQ" },
+        { ad: "Köfte", youtube: "https://www.youtube.com/watch?v=7tzB0OSV0so" },
+        { ad: "Tavuklu Pilav", youtube: "https://www.youtube.com/watch?v=CEeslQzK-_U" },
+        { ad: "Cızlak (Biberli Ekmek)", youtube: "https://www.youtube.com/watch?v=FE9hK4Ogo4Q" },
+        { ad: "İmam Bayıldı", youtube: "https://www.youtube.com/watch?v=4bTZYaP4F2g" },
+        { ad: "Taze Fasulye", youtube: "https://www.youtube.com/watch?v=rqN-bzKHPOo" },
+        { ad: "Sucuklu Yumurta", youtube: "https://www.youtube.com/watch?v=a9LODEjBMV8" },
+        { ad: "Akşam Kahvaltısı Tabağı", youtube: "https://www.youtube.com/watch?v=2VaP9t41yAY" },
+        { ad: "Tost (Kaşarlı, Sucuklu)", youtube: "https://www.youtube.com/watch?v=9F_A4ohqGhI" },
+        { ad: "Peynirli Gözleme", youtube: "https://www.youtube.com/watch?v=EFiUZMCnMpY" },
+        { ad: "Patates Kızartması", youtube: "https://www.youtube.com/watch?v=AzE0jZZ1FXY" },
+        { ad: "Mozarella Çubukları", youtube: "https://www.youtube.com/watch?v=7tR9IEEGJXk" },
+        { ad: "Tavuk Burger", youtube: "https://www.youtube.com/watch?v=SOjLSgErGOo" },
+        { ad: "Ev Usulü Pizza", youtube: "https://www.youtube.com/watch?v=3L0GD42I_NA" },
+        { ad: "Bugün dışardan mı söylesek? 😅", youtube: "https://www.yemeksepeti.com/" },
+        { ad: "Bugün sana bırakıyorum 💕", youtube: "https://www.youtube.com/results?search_query=kolay+yemek+tarifleri" }
+      ];
+
+      const yemekEl = document.getElementById("yemek");
+      const tarifLinkEl = document.getElementById("tarifLinki");
+      const buton = document.getElementById("secici");
+
+      buton.addEventListener("click", () => {
+        const secilen = yemekler[Math.floor(Math.random() * yemekler.length)];
+        yemekEl.textContent = `🍴 ${secilen.ad}`;
+        tarifLinkEl.textContent = "YouTube'da Tarifini İzle";
+        tarifLinkEl.href = secilen.youtube;
+      });
+    });
+  </script>
+</body>
+</html>
